@@ -12,13 +12,13 @@ def take_pic():
     picam2.configure(config)
     picam2.start()
     time.sleep(5)
-    now = time.strftime("%Y%m%d-%H%M%S", time.gmtime())
+    gmtime = time.gmtime()
+    today = time.strftime("%Y%m%d", gmtime)
+    timeToday = time.strftime("%H%M%S", gmtime)
     np_array = picam2.capture_array()
     print(np_array)
 
-    home_dir = str(Path.home())
-    picam2.capture_file(home_dir + "/current/" + now + ".jpg")
+    picam2.capture_file(str(Path.home()) + "/captures/" + today + "/" + timeToday + ".jpg")
     picam2.stop()
-
 
 take_pic()
